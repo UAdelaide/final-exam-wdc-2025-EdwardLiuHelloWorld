@@ -16,6 +16,13 @@ app.use(session({
   saveUninitialized: true
 }));
 
+const dbConfig = {
+  host: 'localhost',
+  user: 'root',
+  password: '',
+  database: 'DogWalkService'
+};
+
 // Routes
 const walkRoutes = require('./routes/walkRoutes');
 const userRoutes = require('./routes/userRoutes');
