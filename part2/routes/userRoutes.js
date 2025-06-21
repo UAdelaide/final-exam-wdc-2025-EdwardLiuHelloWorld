@@ -55,4 +55,17 @@ router.post('/login', async (req, res) => {
   }
 });
 
+router.get('/my-dogs', async (req, res) => {
+  if (!req.session.user) return res.status(401).send('Not logged in');
+  const userId = req.session.user.user_id;
+  const conn = await mysql.createConnection(dbConfig);
+  const [rows] = await conn.execute(
+    'SELECT dog_id, name FROM Dogs WHERE owner_id = ?',
+    [userId]
+  );
+  await conn.end();
+  res.json(rows);
+});
+
+
 module.exports = router;
