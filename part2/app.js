@@ -1,11 +1,14 @@
 const express = require('express');
 const path = require('path');
+const session = require('express-session');
+const mysql = require('mysql2/promise');
 require('dotenv').config();
 
 const app = express();
 
 // Middleware
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, '/public')));
 
 // Routes
