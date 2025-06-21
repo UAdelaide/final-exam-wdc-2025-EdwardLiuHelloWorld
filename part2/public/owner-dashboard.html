@@ -84,9 +84,9 @@
         const dogs = ref([]);
 
         async function loadDogs() {
-        const res = await fetch('/api/users/my-dogs');
-  dogs.value = await res.json();
-}
+          const res = await fetch('/api/users/my-dogs');
+          dogs.value = await res.json();
+        }
 
 
         const walks = ref([]);
