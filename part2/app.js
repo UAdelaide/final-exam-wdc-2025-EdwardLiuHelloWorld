@@ -23,6 +23,31 @@ const dbConfig = {
   database: 'DogWalkService'
 };
 
+app.post('/login', async (req, res) => {
+  const { username, password } = req.body;
+  const conn = await mysql.createConnection(dbConfig);
+  const [rows] = await conn.execute(
+    'SELECT * FROM Users WHERE username = ? AND password_hash = ?',
+    [username, password]
+  );
+  await conn.end();
+
+  if (rows.length > 0) {
+    req.session.user = rows[0];
+    const role = rows[0].role;
+    if (role === 'owner') {
+      res.redirect('/owner-dashboard.html');
+    } else if (role === 'walker') {
+      res.redirect('/walker-dashboard.html');
+    } else {
+      res.send('Unknown role');
+    }
+  } else {
+    res.send('Login failed');
+  }
+});
+
+
 // Routes
 const walkRoutes = require('./routes/walkRoutes');
 const userRoutes = require('./routes/userRoutes');
