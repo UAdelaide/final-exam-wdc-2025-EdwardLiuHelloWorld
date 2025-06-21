@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Dog of the Day</title>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <style>
+    body {
+      background: yellow;
+      font-size: 30px;
+      font-family: Comic Sans MS, cursive;
+    }
+    img {
+      width: 100%;
+      border: 5px dashed red;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <h1>Dog of the Day</h1>
+    <button @click="fetchDog">Click 3 times to reveal image</button>
+    <p v-if="clickCount < 3">Clicks: {{ clickCount }}</p>
+    <img v-if="clickCount >= 3" :src="dogImage" />
+    <p>Name: Mr. Woofy</p>
+  </div>
+
+  <script>
+    const { createApp } = Vue;
+    createApp({
+      data() {
+        return {
+          dogImage: '',
+          clickCount: 0
+        };
+      },
+      methods: {
+        async fetchDog() {
+          this.clickCount++;
+          if (this.clickCount === 3) {
+            const res = await fetch('https://dog.ceo/api/breeds/image/random');
+            const data = await res.json();
+            this.dogImage = data.message;
+          }
+        }
+      }
+    }).mount('#app');
+  </script>
+</body>
+</html>
