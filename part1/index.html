@@ -19,9 +19,9 @@
 <body>
   <div id="app">
     <h1>Dog of the Day</h1>
-    <button @click="fetchDog">Click 3 times to reveal image</button>
+    <button type="button" @click="fetchDog">Click 3 times to reveal image</button>
     <p v-if="clickCount < 3">Clicks: {{ clickCount }}</p>
-    <img v-if="clickCount >= 3" :src="dogImage" />
+    <img v-if="clickCount >= 3" :src="dogImage" alt="Random dog image" />
     <p>Name: Mr. Woofy</p>
   </div>
 
