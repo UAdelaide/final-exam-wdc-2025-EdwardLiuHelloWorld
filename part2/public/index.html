@@ -30,7 +30,7 @@
   <script>
   const { createApp, onMounted, ref } = Vue;
 
-createApp({
+  createApp({
     setup() {
       const message = ref('Welcome to the Dog Walking Service!');
       const dogs = ref([]);
@@ -54,8 +54,8 @@ createApp({
 
       return { message, dogs };
     }
-}).mount('#app');
-</script>
+  }).mount('#app');
+  </script>
 
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
