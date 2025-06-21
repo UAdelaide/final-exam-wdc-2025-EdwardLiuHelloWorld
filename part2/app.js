@@ -23,6 +23,8 @@ const dbConfig = {
   database: 'DogWalkService'
 };
 
+// Routes
+
 app.post('/login', async (req, res) => {
   const { username, password } = req.body;
   const conn = await mysql.createConnection(dbConfig);
@@ -48,7 +50,6 @@ app.post('/login', async (req, res) => {
 });
 
 
-// Routes
 const walkRoutes = require('./routes/walkRoutes');
 const userRoutes = require('./routes/userRoutes');
 
