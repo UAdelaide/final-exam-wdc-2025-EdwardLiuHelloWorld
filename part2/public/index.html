@@ -39,11 +39,11 @@
         const dogRes = await fetch('/api/dogs');
         const dogData = await dogRes.json();
 
-      for (const dog of dogData) {
-        const imgRes = await fetch('https://dog.ceo/api/breeds/image/random');
-        const img = await imgRes.json();
-        dog.image = img.message;
-      }
+        for (const dog of dogData) {
+          const imgRes = await fetch('https://dog.ceo/api/breeds/image/random');
+          const img = await imgRes.json();
+          dog.image = img.message;
+        }
 
       dogs.value = dogData;
     }
