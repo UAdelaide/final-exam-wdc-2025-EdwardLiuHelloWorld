@@ -56,5 +56,16 @@ const userRoutes = require('./routes/userRoutes');
 app.use('/api/walks', walkRoutes);
 app.use('/api/users', userRoutes);
 
+app.get('/logout', (req, res) => {
+  req.session.destroy(err => {
+    if (err) {
+      return res.send('Logout failed');
+    }
+    res.clearCookie('connect.sid');
+    res.redirect('/');
+  });
+});
+
+
 // Export the app instead of listening here
 module.exports = app;
