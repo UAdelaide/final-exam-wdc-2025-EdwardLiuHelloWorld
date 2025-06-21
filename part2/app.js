@@ -52,9 +52,11 @@ app.post('/login', async (req, res) => {
 
 const walkRoutes = require('./routes/walkRoutes');
 const userRoutes = require('./routes/userRoutes');
+const dogRoutes  = require('./routes/dogRoutes');
 
 app.use('/api/walks', walkRoutes);
 app.use('/api/users', userRoutes);
+app.use('/api/dogs', dogRoutes);
 
 app.get('/logout', (req, res) => {
   req.session.destroy(err => {
